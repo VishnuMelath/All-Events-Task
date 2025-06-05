@@ -3,7 +3,6 @@ import 'package:http/http.dart';
 
 class APIServices {
   static const baseUrl = 'https://allevents.s3.amazonaws.com/tests/';
-  // static const baseUrl = 'https://sarkar-backend.onrender.com/api';
 
   static Future<Response> getAPIWithoutToken(String url) async {
     final response =

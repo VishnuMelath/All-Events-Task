@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthProvider extends ChangeNotifier {
+  // ignore: unused_field
   final Ref _ref;
 
   AuthProvider(this._ref);
@@ -19,7 +20,7 @@ class AuthProvider extends ChangeNotifier {
         //navigate to home
         log('navigate to home');
       }
-    } on Exception catch (e) {
+    } on Exception catch (_) {
       //show error
     }
   }
