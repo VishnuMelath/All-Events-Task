@@ -1,6 +1,10 @@
-import 'package:all_events_task/presentation/providers/providers.dart';
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:all_events_task/config/route/route_names.dart';
+import 'package:all_events_task/data/data_sources/user_rename.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
@@ -21,9 +25,14 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
     );
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceOut);
     controller.forward();
-    Future.delayed(Duration(seconds: 1, milliseconds: 100), () {
-      //navigate
-      ref.read(authProvider).signupUsingGoogle();
+    Future.delayed(Duration(seconds: 1), () {
+      UserSources.getData().then((value) {
+        if (UserSources.isLoggedIn) {
+          context.goNamed(AppRouteNames.homeScreen);
+        } else {
+          context.goNamed(AppRouteNames.loginScreen);
+        }
+      });
     });
     super.initState();
   }

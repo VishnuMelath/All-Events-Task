@@ -1,16 +1,16 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserSources {
-  String? name;
-  bool isLoggedIn = false;
+  static String? name;
+  static bool isLoggedIn = false;
 
-  getData() async {
+  static Future getData() async {
     final sharedPref = await SharedPreferences.getInstance();
     name = sharedPref.getString('name');
     isLoggedIn = sharedPref.getBool('isLoggedIn') ?? false;
   }
 
-  saveDate() async {
+  static Future saveDate() async {
     final sharedPref = await SharedPreferences.getInstance();
     await sharedPref.setBool('isLoggedIn', isLoggedIn);
     if (name != null) await sharedPref.setString('name', name!);
