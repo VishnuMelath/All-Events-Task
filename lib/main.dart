@@ -1,5 +1,6 @@
+import 'package:all_events_task/config/route/route_config.dart';
+import 'package:all_events_task/config/themes/colors.dart';
 import 'package:all_events_task/firebase_options.dart';
-import 'package:all_events_task/presentation/views/screens/onboarding_section/splash_screen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, DeviceOrientation;
@@ -20,13 +21,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: AppColors.backgroundColor,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.backgroundColor,
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+
+        fontFamily: 'Lufga',
       ),
-      home: const SplashScreen(),
+      routerConfig: AppRouteConfig.goRouter,
     );
   }
 }
