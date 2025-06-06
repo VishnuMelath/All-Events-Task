@@ -43,9 +43,9 @@ All data is loaded from:
 ## 🧩 Project Structure
 
 lib/
-├── config/\n
-│ ├── route/\n
-│ ├── themes/\n
+├── config/
+│ ├── route/
+│ ├── themes/
 ├── domain/
 │ └── models/
 ├── presentation/
