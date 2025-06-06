@@ -56,7 +56,7 @@ lib/
 assets/
 ├── images/
 ├── lottie/
-
+```
 
 ## 🛠 How to Run
 
