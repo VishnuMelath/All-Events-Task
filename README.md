@@ -62,18 +62,18 @@ assets/
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/VishnuMelath/All-Events-Task
+   - git clone https://github.com/VishnuMelath/All-Events-Task
 
-   cd all_events_task
+   - cd all_events_task
 
 2. **Install dependencies**
-    flutter pub get
+    - flutter pub get
 
 3. **Set up Firebase**
 
-    Add your own google-services.json and GoogleService-Info.plist for Android and iOS respectively.
+    - Add your own google-services.json and GoogleService-Info.plist for Android and iOS respectively.
 
-    Enable Google Sign-In from Firebase Console.
+    - Enable Google Sign-In from Firebase Console.
 
 4. **Run the app**
     flutter run
