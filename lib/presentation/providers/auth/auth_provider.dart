@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:all_events_task/config/route/route_names.dart';
 import 'package:all_events_task/data/data_sources/user_sources.dart';
@@ -19,11 +18,10 @@ class AuthProvider extends ChangeNotifier {
 
   Future signupUsingGoogle(BuildContext context) async {
     try {
+      await GoogleSignIn().signOut();
       var responce = await GoogleSignIn().signIn();
-
       if (responce == null) {
-        //show error
-        log('error');
+        showErrorSnackBar(context, 'Login failed');
       } else {
         UserSources.name = responce.displayName;
         UserSources.profileImage = responce.photoUrl;
@@ -34,6 +32,8 @@ class AuthProvider extends ChangeNotifier {
         context.goNamed(AppRouteNames.homeScreen);
         _ref.read(eventProvider).getCategories();
       }
+    } on SocketException {
+      showErrorSnackBar(context, "please check your internet connection");
     } on Exception catch (_) {
       showErrorSnackBar(context, 'Something went wrong');
     }

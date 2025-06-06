@@ -11,3 +11,5 @@ final eventProvider = ChangeNotifierProvider<EventProvider>(
 );
 
 final isGridProvider = StateProvider((ref) => true);
+final isWebViewLoading = StateProvider<bool>((ref) => true);
+final progressNotifier = StateProvider<int>((ref) => 0);
