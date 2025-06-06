@@ -1,4 +1,6 @@
 import 'package:all_events_task/config/route/route_names.dart';
+import 'package:all_events_task/domain/models/event_model.dart';
+import 'package:all_events_task/presentation/views/screens/main_section/event_details_screen/event_details_screen.dart';
 import 'package:all_events_task/presentation/views/screens/main_section/home_screen/home_screen.dart';
 import 'package:all_events_task/presentation/views/screens/main_section/search_screen/search_screen.dart';
 import 'package:all_events_task/presentation/views/screens/onboarding_section/login_screen/login_screen.dart';
@@ -10,7 +12,7 @@ class AppRouteConfig {
     initialLocation: '/',
     routes: [
       GoRoute(
-        path: '/splash',
+        path: '/',
         name: AppRouteNames.splashScreen,
         builder: (context, state) => const SplashScreen(),
         routes: [
@@ -28,6 +30,14 @@ class AppRouteConfig {
                 path: '/search',
                 name: AppRouteNames.searchScreen,
                 builder: (context, state) => const SearchScreen(),
+              ),
+              GoRoute(
+                path: '/eventDetails',
+                name: AppRouteNames.eventDetailsScreen,
+                builder: (context, state) {
+                  var event = state.extra as EventModel;
+                  return EventDetailsScreen(event: event);
+                },
               ),
             ],
           ),

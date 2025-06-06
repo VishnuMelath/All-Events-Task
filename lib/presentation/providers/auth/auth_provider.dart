@@ -1,7 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:developer';
 
+import 'package:all_events_task/config/route/route_names.dart';
+import 'package:all_events_task/data/data_sources/user_sources.dart';
+import 'package:all_events_task/presentation/providers/providers.dart';
+import 'package:all_events_task/presentation/views/shared/snackbars/custom_snackbars.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthProvider extends ChangeNotifier {
@@ -10,18 +17,25 @@ class AuthProvider extends ChangeNotifier {
 
   AuthProvider(this._ref);
 
-  Future signupUsingGoogle() async {
+  Future signupUsingGoogle(BuildContext context) async {
     try {
       var responce = await GoogleSignIn().signIn();
+
       if (responce == null) {
         //show error
         log('error');
       } else {
+        UserSources.name = responce.displayName;
+        UserSources.profileImage = responce.photoUrl;
+        UserSources.isLoggedIn = true;
+        await UserSources.saveDate();
         //navigate to home
-        log('navigate to home');
+
+        context.goNamed(AppRouteNames.homeScreen);
+        _ref.read(eventProvider).getCategories();
       }
     } on Exception catch (_) {
-      //show error
+      showErrorSnackBar(context, 'Something went wrong');
     }
   }
 }

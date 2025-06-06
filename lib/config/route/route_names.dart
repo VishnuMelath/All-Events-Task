@@ -3,4 +3,5 @@ class AppRouteNames {
   static const String loginScreen = 'loginScreen';
   static const String homeScreen = 'homeScreen';
   static const String searchScreen = 'searchScreen';
+  static const String eventDetailsScreen = 'eventDetailsScreen';
 }

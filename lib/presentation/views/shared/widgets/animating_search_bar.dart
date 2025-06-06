@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:all_events_task/config/route/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class AnimatingSearchBar extends StatefulWidget {
   final void Function(String? value) onChanged;
@@ -67,21 +69,13 @@ class _AnimatingSearchBarState extends State<AnimatingSearchBar> {
                     maxHeight: 40,
                   ),
                   prefixIcon: Padding(
-                    padding: const EdgeInsets.only(left: 15.0, right: 13),
+                    padding: const EdgeInsets.only(left: 15.0, right: 10),
                     child: Image.asset(
-                      'assets/images/other/search_grey.png',
+                      'assets/images/search_black.png',
                       width: 20,
                     ),
                   ),
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.only(right: 15.0),
-                    child:
-                        //  LottieBuilder.asset('assets/lotties/recording.json'),
-                        Image.asset(
-                          'assets/images/home_icons/voice_black.png',
-                          width: 25,
-                        ),
-                  ),
+
                   suffixIconConstraints: const BoxConstraints(
                     maxWidth: 40,
                     maxHeight: 40,
@@ -91,20 +85,20 @@ class _AnimatingSearchBarState extends State<AnimatingSearchBar> {
                   fillColor: Colors.white,
                   filled: true,
                   contentPadding: const EdgeInsets.symmetric(
-                    vertical: 15,
+                    vertical: 13,
                     horizontal: 10,
                   ),
                   border: OutlineInputBorder(
                     borderSide: const BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[200]!),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey[200]!),
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                 ),
               ),
@@ -112,6 +106,7 @@ class _AnimatingSearchBarState extends State<AnimatingSearchBar> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   if (widget.isHome) {
+                    context.pushNamed(AppRouteNames.searchScreen);
                   } else {
                     focusNode.requestFocus();
                   }
@@ -122,13 +117,13 @@ class _AnimatingSearchBarState extends State<AnimatingSearchBar> {
                     return Visibility(
                       visible: visible,
                       child: const Padding(
-                        padding: EdgeInsets.only(left: 46.0, top: 17),
+                        padding: EdgeInsets.only(left: 46.0, top: 15),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Search your ',
+                              'Search Events ',
                               style: TextStyle(color: Colors.grey),
                             ),
                             CustomAnimatingText(),
@@ -157,20 +152,18 @@ class CustomAnimatingText extends StatefulWidget {
 class _CustomAnimatingTextState extends State<CustomAnimatingText>
     with SingleTickerProviderStateMixin {
   PageController pageController = PageController();
-  List<String> content = [
-    'Music',
-    'Businness',
-    'Vegetables',
-    'Drinks & Juices',
-  ];
+  List<String> content = ['Music', 'Businness', 'Sports', 'Workshops'];
   @override
   void initState() {
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      pageController.nextPage(
-        duration: const Duration(seconds: 1),
-        curve: Easing.legacy,
-      );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Timer.periodic(const Duration(seconds: 1), (timer) {
+        pageController.nextPage(
+          duration: const Duration(seconds: 1),
+          curve: Easing.legacy,
+        );
+      });
     });
+
     super.initState();
   }
 

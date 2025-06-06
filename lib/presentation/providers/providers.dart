@@ -9,3 +9,5 @@ final authProvider = ChangeNotifierProvider<AuthProvider>((ref) {
 final eventProvider = ChangeNotifierProvider<EventProvider>(
   (ref) => EventProvider(ref),
 );
+
+final isGridProvider = StateProvider((ref) => true);
