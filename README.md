@@ -41,7 +41,7 @@ All data is loaded from:
 -  https://allevents.s3.amazonaws.com/tests/categories.json
 
 ## 🧩 Project Structure
-
+```bash
 lib/
 ├── config/
 │ ├── route/
