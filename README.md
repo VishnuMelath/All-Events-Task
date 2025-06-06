@@ -35,10 +35,10 @@ A cross-platform event listing mobile app built using Flutter, implementing dyna
 - **Event Details**: Full event info + ticket booking
 - **WebView**: Opens booking link in embedded browser
 
-## 🔗 API Source
+## API Endpoints
 
-All data is loaded from:
--  https://allevents.s3.amazonaws.com/tests/categories.json
+- **Categories API**: Fetches event categories.
+- **Events API**: Fetches events based on the selected category.
 
 ## 🧩 Project Structure
 ```bash
@@ -58,23 +58,22 @@ assets/
 ├── lottie/
 ```
 
-## 🛠 How to Run
-
-1. **Clone the repo**
-   ```bash
-   - git clone https://github.com/VishnuMelath/All-Events-Task
-
-   - cd all_events_task
-
-2. **Install dependencies**
-    - flutter pub get
-
-3. **Set up Firebase**
-
-    - Add your own google-services.json and GoogleService-Info.plist for Android and iOS respectively.
-
-    - Enable Google Sign-In from Firebase Console.
-
-4. **Run the app**
-    - flutter run
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/codex7Teen/allevents_pro_flutter_assignment
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd allevents-pro
+   ```
+3. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+4. Run the app:
+   ```sh
+   flutter run
     
+## License
+This project is for assignment purposes only and is not meant for commercial use.
