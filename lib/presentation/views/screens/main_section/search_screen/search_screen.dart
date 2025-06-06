@@ -9,6 +9,7 @@ import 'package:all_events_task/presentation/views/shared/widgets/animating_sear
 import 'package:all_events_task/utils/methods/capitalize_first_letter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:go_router/go_router.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -72,11 +73,14 @@ class SearchScreen extends StatelessWidget {
                             return AnimatingSearchBar(
                               onChanged: (value) {
                                 timer?.cancel();
-                                timer = Timer(const Duration(milliseconds: 500), () {
-                                  ref
-                                      .read(eventProvider)
-                                      .getEvents(query: value);
-                                });
+                                timer = Timer(
+                                  const Duration(milliseconds: 500),
+                                  () {
+                                    ref
+                                        .read(eventProvider)
+                                        .getEvents(query: value);
+                                  },
+                                );
                               },
                               textEditingController: TextEditingController(),
                               isHome: false,
@@ -143,43 +147,74 @@ class SearchScreen extends StatelessWidget {
                           const SizedBox(height: 20),
                           Expanded(
                             child: isLoading == false && events == null
-                                ? const Center(child: Text('Something went wrong'))
-                                : ref.watch(isGridProvider)
-                                ? GridView.builder(
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          mainAxisSpacing: 20,
-                                          crossAxisSpacing: 15,
-                                        ),
-                                    itemCount:
-                                        ref
-                                            .watch(eventProvider)
-                                            .events
-                                            ?.length ??
-                                        4,
-                                    itemBuilder: (context, index) {
-                                      return isLoading
-                                          ? const EventGridLaoding()
-                                          : EventGrid(event: events![index]);
-                                    },
+                                ? const Center(
+                                    child: Text('Something went wrong'),
                                   )
-                                : ListView.builder(
-                                    itemCount:
-                                        ref
-                                            .watch(eventProvider)
-                                            .events
-                                            ?.length ??
-                                        4,
-                                    itemBuilder: (context, index) {
-                                      return isLoading
-                                          ? const EventTileLoading()
-                                          : EventTile(
-                                              event: ref
-                                                  .read(eventProvider)
-                                                  .events![index],
-                                            );
-                                    },
+                                : ref.watch(isGridProvider)
+                                ? AnimationLimiter(
+                                    child: GridView.builder(
+                                      gridDelegate:
+                                          const SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            mainAxisSpacing: 20,
+                                            crossAxisSpacing: 15,
+                                          ),
+                                      itemCount:
+                                          ref
+                                              .watch(eventProvider)
+                                              .events
+                                              ?.length ??
+                                          4,
+                                      itemBuilder: (context, index) {
+                                        return AnimationConfiguration.staggeredGrid(
+                                          position: index,
+                                          columnCount: 2,
+                                          duration: const Duration(
+                                            milliseconds: 500,
+                                          ),
+                                          child: SlideAnimation(
+                                            verticalOffset: 50.0,
+                                            child: FadeInAnimation(
+                                              child: isLoading
+                                                  ? const EventGridLaoding()
+                                                  : EventGrid(
+                                                      event: events![index],
+                                                    ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                : AnimationLimiter(
+                                    child: ListView.builder(
+                                      itemCount:
+                                          ref
+                                              .watch(eventProvider)
+                                              .events
+                                              ?.length ??
+                                          4,
+                                      itemBuilder: (context, index) {
+                                        return AnimationConfiguration.staggeredList(
+                                          position: index,
+                                          duration: const Duration(
+                                            milliseconds: 500,
+                                          ),
+                                          child: SlideAnimation(
+                                            verticalOffset: 50.0,
+                                            child: FadeInAnimation(
+                                              child: isLoading
+                                                  ? const EventTileLoading()
+                                                  : EventTile(
+                                                      event: ref
+                                                          .read(eventProvider)
+                                                          .events![index],
+                                                    ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
                                   ),
                           ),
                         ],

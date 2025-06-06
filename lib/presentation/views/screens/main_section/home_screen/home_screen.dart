@@ -10,6 +10,7 @@ import 'package:all_events_task/presentation/views/shared/widgets/animating_sear
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -45,7 +46,10 @@ class HomeScreen extends StatelessWidget {
                     'Ahmedabad',
                     style: TextStyle(fontSize: 15, color: AppColors.white),
                   ),
-                  const Icon(Icons.arrow_drop_down_outlined, color: AppColors.white),
+                  const Icon(
+                    Icons.arrow_drop_down_outlined,
+                    color: AppColors.white,
+                  ),
                   // Expanded(
                   // //   child: UnconstrainedBox(
                   // //     alignment: Alignment.centerLeft,
@@ -87,7 +91,9 @@ class HomeScreen extends StatelessWidget {
                         width: 35,
                         decoration: BoxDecoration(
                           color: Colors.white.withValues(alpha: 0.1),
-                          borderRadius: const BorderRadius.all(Radius.circular(100)),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(100),
+                          ),
                           border: Border.all(
                             color: Colors.white, // Subtle white border
                             width: 0.5,
@@ -153,30 +159,43 @@ class HomeScreen extends StatelessWidget {
                       onTap: () {
                         ref.read(eventProvider).getCategories();
                       },
-                      child: const Text('Failed to load categories\nTap to refresh'),
+                      child: const Text(
+                        'Failed to load categories\nTap to refresh',
+                      ),
                     );
                   } else {
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: isLoading
-                          ? 4
-                          : ref.read(eventProvider).categories?.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 20,
-                        childAspectRatio: 0.9,
-                      ),
-                      itemBuilder: (context, index) {
-                        if (isLoading) {
-                          return const CategoryLoadingGrid();
-                        } else {
-                          return CategoryGrid(
-                            categoryModel: categories![index],
+                    return AnimationLimiter(
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: isLoading
+                            ? 4
+                            : ref.read(eventProvider).categories?.length ?? 0,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: 20,
+                              childAspectRatio: 0.9,
+                            ),
+                        itemBuilder: (context, index) {
+                          return AnimationConfiguration.staggeredGrid(
+                            position: index,
+                            columnCount: 2,
+                            duration: const Duration(milliseconds: 500),
+                            child: SlideAnimation(
+                              verticalOffset: 50.0,
+                              child: FadeInAnimation(
+                                child: isLoading
+                                    ? const CategoryLoadingGrid()
+                                    : CategoryGrid(
+                                        categoryModel: categories![index],
+                                      ),
+                              ),
+                            ),
                           );
-                        }
-                      },
+                        },
+                      ),
                     );
                   }
                 },
