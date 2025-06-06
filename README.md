@@ -62,7 +62,7 @@ assets/
 
 1. **Clone the repo**
    ```bash
-   git clone https://github.com/yourusername/all_events_task.git
+   git clone https://github.com/VishnuMelath/All-Events-Task
 
    cd all_events_task
 
