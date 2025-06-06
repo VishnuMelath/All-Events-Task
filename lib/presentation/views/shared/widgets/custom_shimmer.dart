@@ -9,7 +9,7 @@ class CustomShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      highlightColor: AppColors.black.withValues(alpha: 0.1),
+      highlightColor: const Color.fromARGB(255, 255, 255, 255),
       baseColor: AppColors.lightGrey,
       child: child,
     );

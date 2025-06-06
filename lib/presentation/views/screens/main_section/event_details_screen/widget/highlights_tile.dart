@@ -13,7 +13,7 @@ class HighlightsTile extends StatelessWidget {
       child: Row(
         spacing: 10,
         children: [
-          Icon(iconData, color: AppColors.primaryColor, size: 15),
+          Icon(iconData, color: AppColors.primaryColor, size: 20),
           Expanded(child: Text(text)),
         ],
       ),

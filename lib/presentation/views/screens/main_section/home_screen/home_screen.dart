@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [AppColors.primaryColor, Color.fromARGB(255, 246, 246, 246)],
-          stops: [0, 0.3],
+          stops: [0, 0.4],
         ),
       ),
       child: Scaffold(
@@ -121,7 +121,7 @@ class HomeScreen extends StatelessWidget {
               //   ],
               // ),
               const SizedBox(height: 20),
-              // Text('Find your faorite Events', style: TextStyle(fontSize: 25)),
+              const Text('Find your faorite Events', style: TextStyle(fontSize: 25)),
               AnimatingSearchBar(
                 onChanged: (value) {},
                 textEditingController: TextEditingController(),
@@ -173,7 +173,7 @@ class HomeScreen extends StatelessWidget {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              mainAxisSpacing: 20,
+                              mainAxisSpacing: 10,
                               crossAxisSpacing: 20,
                               childAspectRatio: 0.9,
                             ),

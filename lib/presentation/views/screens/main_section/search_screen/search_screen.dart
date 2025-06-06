@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:all_events_task/config/themes/colors.dart';
 import 'package:all_events_task/presentation/providers/providers.dart';
 import 'package:all_events_task/presentation/views/screens/main_section/search_screen/widgets/event_grid.dart';
@@ -69,7 +67,6 @@ class SearchScreen extends StatelessWidget {
                         ),
                         Consumer(
                           builder: (context, ref, _) {
-                            log('rebuld');
                             return AnimatingSearchBar(
                               onChanged: (value) {
                                 timer?.cancel();

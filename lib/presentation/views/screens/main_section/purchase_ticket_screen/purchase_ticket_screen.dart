@@ -41,13 +41,16 @@ class _PurchaseTicketScreenState extends ConsumerState<PurchaseTicketScreen> {
     return Scaffold(
       appBar: AppBar(backgroundColor: AppColors.white),
       body: ref.watch(isWebViewLoading)
-          ? Material(
+          ? const Material(
               child: Center(
-                child: SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: CircularProgressIndicator(
-                    value: ref.watch(progressNotifier).toDouble(),
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 100.0),
+                  child: SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: CircularProgressIndicator(
+                      // value: ref.watch(progressNotifier).toDouble(),
+                    ),
                   ),
                 ),
               ),

@@ -22,7 +22,7 @@ class CategoryGrid extends ConsumerWidget {
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
-        spacing: 5,
+        spacing: 1,
         children: [
           Expanded(
             child: Container(
