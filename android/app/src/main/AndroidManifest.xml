@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="all_events_task"
+        android:label="All Events Task"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

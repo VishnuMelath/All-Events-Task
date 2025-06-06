@@ -93,10 +93,7 @@ class HomeScreen extends StatelessWidget {
                           borderRadius: const BorderRadius.all(
                             Radius.circular(100),
                           ),
-                          border: Border.all(
-                            color: Colors.white, // Subtle white border
-                            width: 0.5,
-                          ),
+                          border: Border.all(color: Colors.white, width: 0.5),
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadiusGeometry.circular(100),
@@ -110,18 +107,12 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              // Row(
-              //   spacing: 10,
-              //   children: [
-              //     Image(width: 30, image: AssetImage('assets/images/logo.png')),
-              //     Text(
-              //       'Ahmedabad',
-              //       style: AppTextStyles.lufgaSemiBold.copyWith(fontSize: 15),
-              //     ),
-              //   ],
-              // ),
+
               const SizedBox(height: 20),
-              const Text('Find your faorite Events', style: TextStyle(fontSize: 25)),
+              const Text(
+                'Find your faorite Events',
+                style: TextStyle(fontSize: 25),
+              ),
               AnimatingSearchBar(
                 onChanged: (value) {},
                 textEditingController: TextEditingController(),

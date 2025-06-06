@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:all_events_task/config/route/route_names.dart';
 import 'package:all_events_task/data/data_sources/user_sources.dart';
 import 'package:all_events_task/presentation/providers/providers.dart';
+import 'package:all_events_task/presentation/views/shared/custom_loading.dart';
 import 'package:all_events_task/presentation/views/shared/snackbars/custom_snackbars.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -18,6 +19,7 @@ class AuthProvider extends ChangeNotifier {
 
   Future signupUsingGoogle(BuildContext context) async {
     try {
+      showLoading(context);
       final GoogleSignIn googleSignIn = GoogleSignIn();
 
       await googleSignIn.signOut();
@@ -38,6 +40,8 @@ class AuthProvider extends ChangeNotifier {
       showErrorSnackBar(context, "please check your internet connection");
     } on Exception catch (_) {
       showErrorSnackBar(context, 'Something went wrong');
+    } finally {
+      context.pop();
     }
   }
 }

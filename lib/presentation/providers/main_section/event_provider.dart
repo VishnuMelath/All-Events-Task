@@ -37,10 +37,13 @@ class EventProvider extends ChangeNotifier {
         }
       }
     } on TimeoutException catch (_) {
+      categories = null;
       // handle timeout exception
     } on SocketException {
+      categories = null;
       //handle network error
     } catch (e) {
+      categories = null;
       //show error
     } finally {
       isCategoriesLoading = false;

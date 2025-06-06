@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'All events Task',
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.backgroundColor,
         appBarTheme: const AppBarTheme(
