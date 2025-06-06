@@ -76,5 +76,5 @@ assets/
     - Enable Google Sign-In from Firebase Console.
 
 4. **Run the app**
-    flutter run
+    - flutter run
     
