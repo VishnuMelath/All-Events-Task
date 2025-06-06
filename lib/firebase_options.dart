@@ -64,7 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '230761275611',
     projectId: 'all-events-25739',
     storageBucket: 'all-events-25739.firebasestorage.app',
-    iosClientId: '230761275611-0v8dgu96orvf1c897m5lq9b8avut1de9.apps.googleusercontent.com',
+    iosClientId:
+        '230761275611-0v8dgu96orvf1c897m5lq9b8avut1de9.apps.googleusercontent.com',
     iosBundleId: 'com.example.allEventsTask',
   );
 
@@ -74,7 +75,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '230761275611',
     projectId: 'all-events-25739',
     storageBucket: 'all-events-25739.firebasestorage.app',
-    iosClientId: '230761275611-0v8dgu96orvf1c897m5lq9b8avut1de9.apps.googleusercontent.com',
+    iosClientId:
+        '230761275611-0v8dgu96orvf1c897m5lq9b8avut1de9.apps.googleusercontent.com',
     iosBundleId: 'com.example.allEventsTask',
   );
 

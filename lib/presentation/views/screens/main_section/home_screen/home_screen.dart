@@ -38,7 +38,6 @@ class HomeScreen extends StatelessWidget {
                 spacing: 5,
                 children: [
                   const Image(
-                    color: Colors.white,
                     width: 30,
                     image: AssetImage('assets/images/logo.png'),
                   ),

@@ -60,13 +60,16 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 builder: (context, child) {
                   return Stack(
                     children: [
-                      const SizedBox(width: double.infinity, height: double.infinity),
+                      const SizedBox(
+                        width: double.infinity,
+                        height: double.infinity,
+                      ),
 
                       Positioned(
                         left: MediaQuery.sizeOf(context).width / 2 - 40,
                         top:
                             animation.value *
-                            ((MediaQuery.sizeOf(context).height / 2) - 80),
+                            ((MediaQuery.sizeOf(context).height / 2) - 90),
                         child: const Image(
                           width: 80,
                           image: AssetImage('assets/images/logo.png'),
@@ -77,7 +80,9 @@ class _SplashScreenState extends ConsumerState<SplashScreen>
                 },
               ),
             ),
-            const Expanded(child: Text('All Events', style: TextStyle(fontSize: 30))),
+            const Expanded(
+              child: Text('All Events', style: TextStyle(fontSize: 30)),
+            ),
           ],
         ),
       ),

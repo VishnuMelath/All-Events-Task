@@ -18,8 +18,10 @@ class AuthProvider extends ChangeNotifier {
 
   Future signupUsingGoogle(BuildContext context) async {
     try {
-      await GoogleSignIn().signOut();
-      var responce = await GoogleSignIn().signIn();
+      final GoogleSignIn googleSignIn = GoogleSignIn();
+
+      await googleSignIn.signOut();
+      var responce = await googleSignIn.signIn();
       if (responce == null) {
         showErrorSnackBar(context, 'Login failed');
       } else {

@@ -150,6 +150,10 @@ class SearchScreen extends StatelessWidget {
                                 ? const Center(
                                     child: Text('Something went wrong'),
                                   )
+                                : (events?.isEmpty ?? false)
+                                ? const Center(
+                                    child: Text('Oops! No Events found'),
+                                  )
                                 : ref.watch(isGridProvider)
                                 ? AnimationLimiter(
                                     child: GridView.builder(
